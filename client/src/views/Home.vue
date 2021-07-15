@@ -55,189 +55,52 @@
     <!-- END - CAROUSEL SLIDES -->
 
 
-    <v-container class="my-5">
+    <v-container>
     <!-- START - PRODUCT CARD -->
 
-    <!-- <v-layout row wrap>
-      <v-flex xs12 sm6>
-        <v-btn block class="primary outlined">1</v-btn>
-      </v-flex>
-      
-      <v-flex xs4 sm2>
-        <v-btn block class="primary outlined">2</v-btn>
-      </v-flex>
+    <v-layout wrap d-flex flex-row justify-center>
 
-      <v-flex xs4 sm2>
-        <v-btn block class="primary outlined">3</v-btn>
-      </v-flex>
+      <!-- <ProductComponent :productList="productList"></ProductComponent> -->
 
-      <v-flex xs4 sm2>
-        <v-btn block class="primary outlined">4</v-btn>
-      </v-flex>
-    </v-layout> -->
-
-    <v-layout row wrap d-flex justify-center>
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">1</v-btn>
-      </v-flex>
-      
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-
-      <v-flex xs12 sm3 md3 lg2 xl1 class="mr-3 mb-4">
-        <v-btn outlined block class="success">2</v-btn>
-      </v-flex>
-    </v-layout>
-
-    <v-layout row wrap d-flex justify-center>
       <v-card
       xs12 sm3 md3 lg2 xl1
-      class="mx-auto"
+      class="mx-2 my-3"
       max-width="180"
+      max-height="345"
+      v-for="product in productList"
+      :key="product.id"
       >
       
       <v-img
         class="white--text align-end"
-        height="200px"
-        src="https://ecommerce-fruits-bucket.s3.ap-southeast-1.amazonaws.com/apelmalang.png"
+        height="180px"
+        :src="product.image_url"
       >
       </v-img>
 
-      <v-card-subtitle class="pb-0 title font-weight-bold uppercase orange--text text--darken-3">
-        Apel Malang
+      <v-card-subtitle class="pb-0 subtitle-1 font-weight-bold uppercase orange--text text--darken-3">
+        {{ product.name }}
       </v-card-subtitle>
 
-      <v-card-text class="text--primary">
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
+      <v-card-text class="mb-0">
+        <div class="grey--text text--darken-2 font-weight-bold">Rp{{ priceFormatter(product.price) }}</div>
+        <div class="grey--text text--darken-1 font-italic font-weight-light">Stock: {{ product.stock }}</div>
       </v-card-text>
 
-      <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
+      <v-card-actions class="mt-0 mb-1">
+          <v-btn
+            rounded
+            outlined
+            small
+            color="green"
+            dark
+            @click.prevent="buyProduct(product.id)"
+          >
+            Add to Cart
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card
-      xs12 sm3 md3 lg2 xl1
-      class="mx-auto"
-      max-width="180"
-      >
       
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        src="https://ecommerce-fruits-bucket.s3.ap-southeast-1.amazonaws.com/apelmalang.png"
-      >
-      </v-img>
-
-      <v-card-subtitle class="pb-0 title font-weight-bold uppercase orange--text text--darken-3">
-        Apel Malang
-      </v-card-subtitle>
-
-      <v-card-text class="text--primary">
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
-      </v-card-text>
-
-      <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-card
-      xs12 sm3 md3 lg2 xl1
-      class="mx-auto"
-      max-width="180"
-      >
-      
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        src="https://ecommerce-fruits-bucket.s3.ap-southeast-1.amazonaws.com/apelmalang.png"
-      >
-      </v-img>
-
-      <v-card-subtitle class="pb-0 title font-weight-bold uppercase orange--text text--darken-3">
-        Apel Malang
-      </v-card-subtitle>
-
-      <v-card-text class="text--primary">
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
-      </v-card-text>
-
-      <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-card
-      xs12 sm3 md3 lg2 xl1
-      class="mx-auto"
-      max-width="180"
-      max-height="350"
-      >
-      
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        src="https://ecommerce-fruits-bucket.s3.ap-southeast-1.amazonaws.com/apelmalang.png"
-      >
-      </v-img>
-
-      <v-card-subtitle class="pb-0 title font-weight-bold uppercase orange--text text--darken-3">
-        Apel Malang
-      </v-card-subtitle>
-
-      <v-card-text class="grey--text text--darken-2 font-weight-bold">
-        <div>Rp50,500</div>
-      </v-card-text>
-
-      <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
-          </v-btn>
-        </v-card-actions>
-      </v-card>
     </v-layout>
     <!-- END - PRODUCT CARD -->
     </v-container>
@@ -247,13 +110,19 @@
 
 <script>
 
+// import ProductComponent from '../components/ProductComponent.vue'
+
   export default {
     name: 'Home',
     components: {
+      // ProductComponent
     },
     computed: {
       slides () {
         return this.$store.state.slides
+      },
+      productList () {
+        return this.$store.state.products
       }
     },
     methods: {
@@ -263,10 +132,34 @@
           } else {
               this.$store.dispatch('checkAuth', true)
           }
+      },
+      priceFormatter (price) {
+            let string = price.toString()
+            let array = []
+            let counter = 0
+
+            for (let i = string.length-1; i >= 0; i--) {
+                if (counter === 3) {
+                    array.push(',')
+                    counter = 0
+                }
+                array.push(string[i])
+                counter++
+            }
+
+            let result = ''
+            for (let i = array.length-1; i >= 0; i--) {
+                result += array[i]
+            }
+            return result
+        },
+      buyProduct (productId) {
+        this.$store.dispatch('buyProduct', productId)
       }
     },
     created () {
         this.checkAuth()
+        this.$store.dispatch('fetchProducts')
     }
   }
 </script>

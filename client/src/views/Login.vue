@@ -1,11 +1,14 @@
 <template>
   
-  <div class="d-flex flex-row justify-center"  max-width="400">
+  <div class="d-flex flex-row align-center justify-center"  max-width="400">
 
-    <div class="d-flex flex-column justify-center">
+    <div class="d-flex flex-column align-center">
         <v-card-title class="mb-0 text-uppercase font-weight-light green--text">
                 Login to your account
         </v-card-title>
+        
+        <section v-if="isError" class="caption red--text">{{ errorMessage }}</section>
+
     </div>
 
   <v-card class="mx-10 my-10" width="400">
@@ -60,6 +63,14 @@
 <script>
 export default {
     name: 'LoginPage',
+    computed: {
+      isError () {
+        return this.$store.state.isError
+      },
+      errorMessage () {
+        return this.$store.state.errorMessage
+      }
+    },
     data () {
         return {
             email: '',
