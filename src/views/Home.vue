@@ -16,8 +16,8 @@ export default {
     Card
   },
   mounted() {
-    console.log('created')
     this.$store.dispatch('fetchData')
+    this.$store.commit('CHECK_LOGIN')
   },
   computed: {
     products() {

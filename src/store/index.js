@@ -5,7 +5,7 @@ import Axios from 'axios'
 import Swal from 'sweetalert2'
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: 'https://commerce-server-meh.herokuapp.com/'
 })
 
 Vue.use(Vuex)

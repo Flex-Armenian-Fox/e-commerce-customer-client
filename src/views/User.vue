@@ -4,6 +4,7 @@
 
 <script>
 /* global gapi */
+import router from '../router'
 export default {
   methods: {
     logout(){
@@ -12,12 +13,12 @@ export default {
         auth2.signOut().then(function () {
             console.log('User signed out.');
             localStorage.clear()
-            this.$router.push('/')
+            router.push('/login')
         })
       }
       else {
         localStorage.clear()
-        this.$router.push('/')
+        router.push('/login')
       }
     },
   }

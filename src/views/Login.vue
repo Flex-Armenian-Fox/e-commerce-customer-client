@@ -14,15 +14,18 @@
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
       <br>
+      <p>do not have an account?</p>
+      <router-link to="/register"> Click here to register! </router-link>
+      <br><br>
       <p>or sign in with:</p>
       <div class="d-flex justify-content-center">
-         <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+         <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess"></GoogleLogin>
       </div>
     </div>
 </template>
 
 <script>
-import GoogleLogin from 'vue-google-login';
+import GoogleLogin from 'vue-google-login'
 export default {
     data(){
         return {
