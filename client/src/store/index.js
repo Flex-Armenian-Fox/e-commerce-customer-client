@@ -3,6 +3,10 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from '../router'
 
+const axios = Axios.create({
+    baseURL: 'https://ecommerce-cms-kd.herokuapp.com'
+})
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -82,9 +86,9 @@ export default new Vuex.Store({
         router.push({ name: 'Home'})
     },
     userRegister ({ commit }, input) {
-        Axios({
+        axios({
             method: 'POST',
-            url: 'http://localhost:3000/users/register',
+            url: '/users/register',
             data: input
         })
         .then(response => {
@@ -99,13 +103,14 @@ export default new Vuex.Store({
         })
     },
     userLogin ({ commit, dispatch }, input) {
-        Axios({
+        axios({
             method: 'POST',
-            url: 'http://localhost:3000/users/login',
+            url: '/users/login',
             data: input
         })
         .then(response => {
             localStorage.setItem('accesstoken', response.data.accesstoken)
+            localStorage.setItem('currentEmail', input.email)
             commit('LOGIN_STATUS', true)
             commit('SET_CURRENT_USER', input.email)
             router.push({ name: 'Home' })
@@ -125,9 +130,9 @@ export default new Vuex.Store({
         commit('LOGIN_STATUS', false)
     },
     fetchProducts ({ commit }) {
-        Axios({
+        axios({
             method: 'GET',
-            url: 'http://localhost:3000/products/'
+            url: '/products/'
         })
         .then(response => {
             // console.log(response.data.products, ' <== fetchProducts THEN')
@@ -138,9 +143,9 @@ export default new Vuex.Store({
         })
     },
     fetchCart ({ commit }) {
-        Axios({
+        axios({
             method: 'GET',
-            url: 'http://localhost:3000/cart',
+            url: '/cart',
             headers: {accesstoken: localStorage.getItem('accesstoken')}
         })
         .then(response => {
@@ -158,9 +163,9 @@ export default new Vuex.Store({
             commit('SET_ERROR_MESSAGE', 'You must login first to shop')
             router.push({ name: 'LoginPage' })
         } else {
-            Axios({
+            axios({
                 method: 'POST',
-                url: 'http://localhost:3000/cart/' + productId,
+                url: '/cart/' + productId,
                 headers: {accesstoken: localStorage.getItem('accesstoken')},
                 data: {quantity: 1}
             })
@@ -174,9 +179,9 @@ export default new Vuex.Store({
         }
     },
     deleteCart ({ commit, dispatch }, cartId) {
-        Axios({
+        axios({
             method: 'DELETE',
-            url: 'http://localhost:3000/cart/' + cartId,
+            url: '/cart/' + cartId,
             headers: {accesstoken: localStorage.getItem('accesstoken')}
         })
         .then(response => {
@@ -191,9 +196,9 @@ export default new Vuex.Store({
         commit('LOGIN_STATUS', boolean)
     },
     updateCart ({ commit, dispatch }, payload) {
-        Axios({
+        axios({
             method: 'PATCH',
-            url: 'http://localhost:3000/cart/' + payload.cartId,
+            url: '/cart/' + payload.cartId,
             headers: {accesstoken: localStorage.getItem('accesstoken')},
             data: {newQuantity: payload.newQuantity}
         })

@@ -189,7 +189,7 @@ export default {
             return this.$store.state.isLoggedIn
         },
         currentUser () {
-            return this.$store.state.currentUser
+            return localStorage.getItem('currentEmail')
         },
         currentCart () {
             return this.$store.state.currentCart
