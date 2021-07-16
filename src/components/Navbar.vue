@@ -7,22 +7,22 @@
     class="myNavbar"
   >
     <div slot="title">
-      <vs-navbar-title>Navbar Color</vs-navbar-title>
+      <vs-navbar-title>Tokopakedi</vs-navbar-title>
     </div>
     <vs-navbar-item index="0" >
-      <a href="#">Home</a>
+      <a href="#" @click.prevent="navigate('/')">Browse</a>
     </vs-navbar-item>
-    <vs-navbar-item index="1">
-      <a href="#">News</a>
+    <vs-navbar-item index="1" v-if="!isLogin">
+      <a href="#" @click.prevent="navigate('/login')">Login</a>
     </vs-navbar-item>
-    <vs-navbar-item index="2">
-      <a href="#">Update</a>
-    </vs-navbar-item>
-    <vs-navbar-item index="3">
+    <vs-navbar-item index="2" v-if="isLogin">
       <span>
-        <a href="#">
-          <vs-icon icon="shopping_cart"></vs-icon>
-        </a>
+        <a href="#" @click.prevent="navigate('/mycart')">My Cart</a>
+      </span>
+    </vs-navbar-item>
+    <vs-navbar-item index="3" v-if="isLogin">
+      <span>
+        <a href="#" @click.prevent="logout">Logout</a>
       </span>
     </vs-navbar-item>
     <vs-spacer></vs-spacer>
@@ -37,6 +37,26 @@ export default {
       colorx: '#1db952',
       indexActive: 0,
     };
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.userModule.isLogin;
+    },
+  },
+  methods: {
+    navigate(path) {
+      this.$router.push(path).catch(() => {});
+    },
+    logout() {
+      this.$store.commit('userModule/SET_IS_LOGIN', false);
+      localStorage.clear();
+      this.$vs.dialog({
+        color: 'success',
+        title: 'Logged Out',
+        text: 'Success Logout',
+      });
+      this.$router.push('/').catch(() => {});
+    },
   },
 };
 </script>
