@@ -13,22 +13,41 @@
         </div> <br>
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
+      <br>
+      <p>or sign in with:</p>
+      <div class="d-flex justify-content-center">
+         <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+      </div>
     </div>
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
 export default {
     data(){
         return {
-            email: "",
-            password: "",
-            errMsg: "",
+          email: "",
+          password: "",
+          errMsg: "",
+          params: {
+            client_id: "939064340244-6vnkag84h8hi4ujiemi0513rn8ipn6nr.apps.googleusercontent.com"
+          },
+          renderParams: {
+              width: 150,
+              height: 50,
+              longtitle: false
+          }
         }
     },
+    components: {GoogleLogin},
     methods: {
-        login(){
-            this.$store.dispatch('login', {email: this.email, password: this.password})
-        }
+      login(){
+          this.$store.dispatch('login', {email: this.email, password: this.password})
+      },
+      onSuccess(googleUser) {
+          var id_token = googleUser.getAuthResponse().id_token
+          this.$store.dispatch('gLogin', {idToken: id_token})
+      }
     }
 }
 </script>
