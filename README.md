@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Client Link
+https://ecarelloshoping.web.app
+
+### Server URL
+https://e-carrello.herokuapp.com
