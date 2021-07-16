@@ -40,6 +40,14 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
+  } else if (localStorage.getItem('accesstoken') && to.name === 'LoginPage') {
+    next({
+      path: '/'
+    })
+  } else if (localStorage.getItem('accesstoken') && to.name === 'RegisterPage') {
+    next({
+      path: '/'
+    })
   } else {
     next()
   }

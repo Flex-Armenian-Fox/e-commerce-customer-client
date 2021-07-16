@@ -3,7 +3,7 @@
   <div class="d-flex flex-row align-center justify-center"  max-width="400">
 
       <div class="d-flex flex-column align-center">
-      <v-card-title class="text-uppercase font-weight-light orange--text text--darken-3">
+      <v-card-title class="text-uppercase font-weight-medium orange--text text--darken-3">
               Create a new account
       </v-card-title>
 

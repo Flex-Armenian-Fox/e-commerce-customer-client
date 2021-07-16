@@ -21,40 +21,6 @@
     <br>
     <br>
 
-    <!-- START - CAROUSEL SLIDES -->
-    <section class="ml-8 mr-8">
-      <v-carousel
-      cycle
-      height="300"
-      hide-delimiter-background
-      show-arrows-on-hover
-      >
-
-        <v-carousel-item
-          v-for="(slide, i) in slides"
-          :key="i"
-        >
-          <v-sheet
-            color="green"
-            height="100%"
-          >
-            <v-row
-              class="fill-height"
-              align="center"
-              justify="center"
-            >
-              <div class="text-h2">
-                {{ slide }}
-              </div>
-            </v-row>
-          </v-sheet>
-        </v-carousel-item>
-
-      </v-carousel>
-    </section>
-    <!-- END - CAROUSEL SLIDES -->
-
-
     <v-container>
     <!-- START - PRODUCT CARD -->
 
@@ -152,7 +118,7 @@
                 result += array[i]
             }
             return result
-        },
+      },
       buyProduct (productId) {
         this.$store.dispatch('buyProduct', productId)
       }
