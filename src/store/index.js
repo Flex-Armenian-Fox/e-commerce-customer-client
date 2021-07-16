@@ -93,6 +93,7 @@ export default new Vuex.Store({
     logout (context, payload) {
       localStorage.clear()
       context.commit('SET_ISLOGIN', false)
+      router.push('/')
     },
     getProducts (context, payload) {
       axios({

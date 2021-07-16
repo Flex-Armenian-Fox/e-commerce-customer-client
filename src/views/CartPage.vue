@@ -76,11 +76,8 @@ export default {
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: 'No'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.$store.dispatch('deleteCart', { id: data.id })
-        }
       })
+      this.$store.dispatch('deleteCart', { id: data.id })
     }
   },
   created () {
