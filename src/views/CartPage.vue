@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import swal from 'sweetalert2'
 export default {
   name: 'App',
   components: {},
@@ -71,12 +70,6 @@ export default {
       this.$store.dispatch('updateQty', { id: data.id, qty: data.qty })
     },
     handleDeleteRow (data) {
-      swal.fire({
-        title: 'Are You Sure To Delete This Data?',
-        showDenyButton: true,
-        confirmButtonText: 'Yes',
-        denyButtonText: 'No'
-      })
       this.$store.dispatch('deleteCart', { id: data.id })
     }
   },

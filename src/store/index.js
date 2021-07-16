@@ -16,7 +16,8 @@ export default new Vuex.Store({
     activeCategory: null,
     products: [],
     categories: [],
-    carts: []
+    carts: [],
+    idProductCheck: null
   },
   mutations: {
     SET_ISLOGIN (state, payload) {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVECATEGORY (state, payload) {
       state.activeCategory = payload
+    },
+    SET_IDPRODUCTCHECK (state, payload) {
+      state.idProductCheck = payload
     }
   },
   actions: {
@@ -54,6 +58,7 @@ export default new Vuex.Store({
       }).then((result) => {
         localStorage.setItem('access_token', result.data.access_token)
         context.commit('SET_ISLOGIN', true)
+        context.dispatch('getCarts')
         router.push({ name: 'Home' })
       }).catch(error => {
         Swal.fire({
@@ -194,13 +199,9 @@ export default new Vuex.Store({
         }
       }).then((result) => {
         Swal.fire({
-          type: 'info',
-          title: 'Thank You',
-          message: 'Cart Deleted Successfull',
-          showConfirmButton: true,
-          timer: 1500
+          title: 'Cart Deleted Successfull'
         })
-        context.dispatch('getCart')
+        context.dispatch('getCarts')
       }).catch(error => {
         Swal.fire({
           type: 'warning',
@@ -239,6 +240,9 @@ export default new Vuex.Store({
       } else {
         return state.products
       }
+    },
+    checkExistProduct: state => {
+      return state.carts.filter(item => item.products.id === state.idProductCheck)
     }
   },
   modules: {

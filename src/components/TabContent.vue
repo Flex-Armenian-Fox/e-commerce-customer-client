@@ -45,11 +45,10 @@ export default {
         Swal.fire({
           type: 'warning',
           title: 'Order cannot more then stock',
-          showConfirmButton: true,
-          timer: 1500
+          showConfirmButton: true
         })
       } else {
-        const checkItem = this.$store.state.carts.filter(cart => cart.productid === item.id)
+        const checkItem = this.$store.state.carts.filter(cart => cart.product.id === item.id)
         console.log('CHECK ITEM', item.id, checkItem)
         if (checkItem.length === 0) {
           this.$store.dispatch('addCart', {
@@ -59,12 +58,29 @@ export default {
             orderid: 0
           })
         } else {
-          this.$store.dispatch('updateQty', { id: item.id, qty: checkItem.qty + item.qty })
+          if (item.stock < (checkItem[0].qty + item.qty)) {
+            Swal.fire({
+              type: 'warning',
+              title: 'Order cannot more then stock',
+              showConfirmButton: true
+            })
+          } else {
+            const dataUpdate = { id: checkItem[0].id, qty: (checkItem[0].qty + item.qty) }
+            console.log('masuk update', dataUpdate)
+            this.$store.dispatch('updateQty', dataUpdate)
+            Swal.fire({
+              type: 'info',
+              title: 'Cart Updated',
+              showConfirmButton: true
+            })
+          }
         }
       }
     }
   },
   components: {
+  },
+  created () {
   }
 }
 </script>

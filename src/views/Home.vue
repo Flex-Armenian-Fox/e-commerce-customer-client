@@ -80,6 +80,7 @@ export default {
   created () {
     if (localStorage.access_token) {
       this.$store.commit('SET_ISLOGIN', true)
+      this.$store.dispatch('getCarts')
     }
     this.$store.commit('SET_ISCART', false)
     this.$store.dispatch('getCategories')
