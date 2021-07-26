@@ -1,0 +1,11 @@
+body.desktop .q-focusable:focus .q-focus-helper,
+body.desktop .q-hoverable:hover .q-focus-helper,
+body.ios .q-hoverable:active .q-focus-helpe {
+  background: inherit !important;
+  opacity: 0 !important;
+}
+
+.q-focus-helper {
+  opacity: 0 !important;
+  transition: unset !important;
+}
